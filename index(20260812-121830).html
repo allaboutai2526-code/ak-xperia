@@ -1,0 +1,3859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AK XPERIA | Travel • Food • Life</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050805;
+    color:#f5f7f2;
+    overflow-x:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+:root{
+    --green:#a7d83b;
+    --green2:#d4ff72;
+    --dark:#050805;
+    --card:#10170d;
+    --muted:#a8b1a3;
+}
+
+
+/* =========================================================
+   AK XPERIA — FINAL STAR LOADING INTRO
+========================================================= */
+
+#akFinalIntro{
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100vh;
+    z-index:2147483647;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 48%, rgba(35,90,42,.28), rgba(5,18,8,.12) 32%, transparent 62%),
+        radial-gradient(circle at 20% 80%, rgba(25,80,35,.16), transparent 42%),
+        radial-gradient(circle at 82% 20%, rgba(30,75,38,.14), transparent 40%),
+        #000;
+    opacity:1;
+    visibility:visible;
+    transition:opacity .7s ease,visibility .7s ease;
+}
+
+/* MANY SMALL BACKGROUND STARS */
+#akFinalIntro::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    opacity:.9;
+    background-image:
+        radial-gradient(circle,rgba(255,255,255,.90) 0 1px,transparent 1.4px),
+        radial-gradient(circle,rgba(255,255,255,.65) 0 .8px,transparent 1.2px),
+        radial-gradient(circle,rgba(180,210,255,.55) 0 .7px,transparent 1.1px);
+    background-size:
+        29px 35px,
+        43px 49px,
+        61px 67px;
+    background-position:
+        3px 7px,
+        19px 31px,
+        43px 17px;
+    animation:akStarField 6s linear infinite;
+}
+
+@keyframes akStarField{
+    from{transform:translate3d(0,0,0)}
+    to{transform:translate3d(-12px,-18px,0)}
+}
+
+/* SUBTLE GREEN SPACE HAZE */
+#akFinalIntro .ak-green-haze{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    background:
+        radial-gradient(ellipse at 50% 50%, rgba(65,130,58,.18), transparent 52%),
+        radial-gradient(ellipse at 35% 65%, rgba(35,95,42,.11), transparent 45%);
+    filter:blur(3px);
+    animation:akGreenHaze 3s ease-in-out infinite alternate;
+}
+
+@keyframes akGreenHaze{
+    from{opacity:.4;transform:scale(.98)}
+    to{opacity:.9;transform:scale(1.04)}
+}
+
+/* Extra tiny stars */
+#akFinalIntro .ak-small-stars{
+    position:absolute;
+    inset:0;
+    z-index:2;
+    opacity:.65;
+    background-image:
+        radial-gradient(circle,rgba(255,255,255,.9) 0 .7px,transparent 1.2px);
+    background-size:31px 37px;
+    background-position:12px 9px;
+    animation:akTinyStars 4s ease-in-out infinite alternate;
+}
+
+@keyframes akTinyStars{
+    from{opacity:.35}
+    to{opacity:.8}
+}
+
+/* A few larger glowing stars */
+#akFinalIntro .ak-glow-stars{
+    position:absolute;
+    inset:0;
+    z-index:3;
+    pointer-events:none;
+}
+
+#akFinalIntro .ak-glow-stars::before,
+#akFinalIntro .ak-glow-stars::after{
+    content:"✦";
+    position:absolute;
+    color:#fff;
+    font-size:14px;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 14px rgba(130,175,255,.9),
+        0 0 25px rgba(80,130,255,.55);
+    animation:akTwinkle 1.8s ease-in-out infinite alternate;
+}
+
+#akFinalIntro .ak-glow-stars::before{
+    left:19%;
+    top:25%;
+}
+
+#akFinalIntro .ak-glow-stars::after{
+    right:17%;
+    top:31%;
+    font-size:11px;
+    animation-delay:.7s;
+}
+
+@keyframes akTwinkle{
+    from{transform:scale(.55);opacity:.35}
+    to{transform:scale(1.25);opacity:1}
+}
+
+
+/* =========================================================
+   MOVING SPACE STICKERS
+========================================================= */
+
+#akFinalIntro .ak-space-stickers{
+    position:absolute;
+    inset:0;
+    z-index:9;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+#akFinalIntro .ak-space-sticker{
+    position:absolute;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Arial,sans-serif;
+    user-select:none;
+    filter:drop-shadow(0 0 8px rgba(120,190,110,.45));
+}
+
+#akFinalIntro .ak-astronaut{
+    left:7%;
+    top:20%;
+    font-size:34px;
+    animation:akAstronautFloat 5s ease-in-out infinite;
+}
+
+#akFinalIntro .ak-planet{
+    right:8%;
+    top:17%;
+    font-size:38px;
+    animation:akPlanetFloat 6s ease-in-out infinite;
+}
+
+#akFinalIntro .ak-satellite{
+    left:12%;
+    bottom:18%;
+    font-size:30px;
+    animation:akSatelliteMove 7s ease-in-out infinite;
+}
+
+#akFinalIntro .ak-rocket{
+    right:13%;
+    bottom:20%;
+    font-size:31px;
+    animation:akRocketMove 5.5s ease-in-out infinite;
+}
+
+#akFinalIntro .ak-ufo{
+    right:27%;
+    top:9%;
+    font-size:27px;
+    animation:akUFOMove 8s ease-in-out infinite;
+}
+
+#akFinalIntro .ak-moon{
+    left:25%;
+    top:13%;
+    font-size:24px;
+    opacity:.85;
+    animation:akMoonFloat 4.5s ease-in-out infinite;
+}
+
+@keyframes akAstronautFloat{
+    0%,100%{transform:translate(0,0) rotate(-5deg)}
+    50%{transform:translate(18px,-22px) rotate(6deg)}
+}
+
+@keyframes akPlanetFloat{
+    0%,100%{transform:translate(0,0) rotate(0deg)}
+    50%{transform:translate(-22px,18px) rotate(12deg)}
+}
+
+@keyframes akSatelliteMove{
+    0%{transform:translate(-20px,10px) rotate(-8deg)}
+    50%{transform:translate(45px,-28px) rotate(10deg)}
+    100%{transform:translate(-20px,10px) rotate(-8deg)}
+}
+
+@keyframes akRocketMove{
+    0%,100%{transform:translate(0,0) rotate(-18deg)}
+    50%{transform:translate(-30px,-25px) rotate(-10deg)}
+}
+
+@keyframes akUFOMove{
+    0%{transform:translateX(0) translateY(0)}
+    25%{transform:translateX(-35px) translateY(12px)}
+    50%{transform:translateX(-70px) translateY(0)}
+    75%{transform:translateX(-35px) translateY(-12px)}
+    100%{transform:translateX(0) translateY(0)}
+}
+
+@keyframes akMoonFloat{
+    0%,100%{transform:translateY(0) rotate(-8deg)}
+    50%{transform:translateY(-15px) rotate(8deg)}
+}
+
+@media(max-width:600px){
+    #akFinalIntro .ak-astronaut{font-size:24px;left:5%;top:18%}
+    #akFinalIntro .ak-planet{font-size:28px;right:5%;top:15%}
+    #akFinalIntro .ak-satellite{font-size:22px;left:7%;bottom:18%}
+    #akFinalIntro .ak-rocket{font-size:24px;right:8%;bottom:19%}
+    #akFinalIntro .ak-ufo{font-size:21px;right:22%;top:8%}
+    #akFinalIntro .ak-moon{font-size:19px;left:20%;top:12%}
+}
+
+/* SHOOTING STAR — TOP LEFT TO OPPOSITE CORNER, FULL 3 SECONDS */
+#akFinalIntro .ak-shooting-star{
+    position:absolute;
+    left:-14%;
+    top:-2%;
+    width:210px;
+    height:2px;
+    z-index:8;
+    opacity:0;
+    transform:rotate(34deg);
+    transform-origin:right center;
+    background:linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255,255,255,.12) 35%,
+        rgba(255,255,255,.55) 75%,
+        #fff 100%
+    );
+    box-shadow:
+        0 0 7px #fff,
+        0 0 17px rgba(120,170,255,.8);
+    animation:akSlowShootingStar 3s linear .05s forwards;
+}
+
+#akFinalIntro .ak-shooting-star::before{
+    content:"✦";
+    position:absolute;
+    right:-9px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#fff;
+    font-size:22px;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 15px #fff,
+        0 0 30px rgba(120,175,255,.95);
+}
+
+#akFinalIntro .ak-shooting-star::after{
+    content:"";
+    position:absolute;
+    right:-1px;
+    top:-12px;
+    width:2px;
+    height:26px;
+    background:linear-gradient(
+        transparent,
+        #fff,
+        transparent
+    );
+    box-shadow:0 0 12px rgba(255,255,255,.9);
+}
+
+@keyframes akSlowShootingStar{
+    0%{
+        left:-18%;
+        top:-4%;
+        opacity:0;
+    }
+
+    7%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    93%{
+        opacity:1;
+    }
+
+    100%{
+        left:112%;
+        top:102%;
+        opacity:0;
+    }
+}
+
+/* LOADING AREA */
+#akFinalIntro .ak-loader{
+    position:absolute;
+    left:50%;
+    top:50%;
+    z-index:20;
+    width:min(430px,90vw);
+    transform:translate(-50%,-50%);
+    text-align:center;
+}
+
+/* ROUND LOADING RING */
+#akFinalIntro .ak-loader-ring{
+    position:relative;
+    width:64px;
+    height:64px;
+    margin:0 auto 24px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,.12);
+    border-top-color:#62a947;
+    border-right-color:#62a947;
+    box-shadow:
+        0 0 12px rgba(98,169,71,.45),
+        0 0 28px rgba(98,169,71,.15);
+    animation:akLoadingSpin 1s linear infinite;
+}
+
+#akFinalIntro .ak-loader-ring::before{
+    content:"";
+    position:absolute;
+    inset:7px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.08);
+    border-left-color:rgba(255,255,255,.7);
+    animation:akLoadingSpinReverse 1.4s linear infinite;
+}
+
+#akFinalIntro .ak-loader-ring::after{
+    content:"";
+    position:absolute;
+    width:5px;
+    height:5px;
+    top:4px;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:#fff;
+    box-shadow:0 0 9px #fff,0 0 16px rgba(110,180,80,.9);
+}
+
+@keyframes akLoadingSpin{
+    to{transform:rotate(360deg)}
+}
+
+@keyframes akLoadingSpinReverse{
+    to{transform:rotate(-360deg)}
+}
+
+/* FOREST GREEN BOLD TITLE */
+#akFinalIntro .ak-title{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    white-space:nowrap;
+
+    font-family:
+        "Trebuchet MS",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:clamp(30px,4.6vw,52px);
+    font-weight:900;
+    letter-spacing:-1px;
+    line-height:1;
+    text-transform:uppercase;
+
+    text-rendering:geometricPrecision;
+    animation:akTitleGlow 1.8s ease-in-out infinite alternate;
+}
+
+
+/* AK — WHITE GLOW */
+
+#akFinalIntro .ak-white{
+    color:#ffffff;
+    text-shadow:
+        0 0 3px rgba(255,255,255,.98),
+        0 0 9px rgba(255,255,255,.82),
+        0 0 20px rgba(255,255,255,.42),
+        0 3px 4px rgba(0,0,0,.9);
+}
+
+
+/* XPERIA — FOREST GREEN GLOW */
+
+#akFinalIntro .ak-green{
+    color:#63ad4a;
+    text-shadow:
+        0 0 3px rgba(99,173,74,1),
+        0 0 9px rgba(99,173,74,.9),
+        0 0 20px rgba(82,155,62,.68),
+        0 0 34px rgba(52,115,45,.42),
+        0 3px 4px rgba(0,0,0,.9);
+}
+
+@keyframes akTitleGlow{
+    from{filter:brightness(.94)}
+    to{filter:brightness(1.12)}
+}
+
+
+/* SMALL HOMEPAGE TITLE */
+
+#akFinalIntro .ak-subtitle{
+    margin-top:10px;
+    color:rgba(180,220,160,.82);
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:8px;
+    font-weight:600;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    text-shadow:0 0 6px rgba(100,170,70,.45);
+}
+
+/* LOADING BAR + PERCENT */
+#akFinalIntro .ak-loading{
+    margin:20px auto 0;
+    width:min(270px,72vw);
+}
+
+#akFinalIntro .ak-loading-track{
+    width:100%;
+    height:2px;
+    overflow:hidden;
+    border-radius:10px;
+    background:rgba(255,255,255,.13);
+}
+
+#akFinalIntro .ak-loading-progress{
+    width:0%;
+    height:100%;
+    border-radius:10px;
+    background:linear-gradient(90deg,#2e6b2b,#62a947,#a4d985);
+    box-shadow:0 0 10px rgba(98,169,71,.7);
+    animation:akLoadingProgress 3s linear forwards;
+}
+
+@keyframes akLoadingProgress{
+    from{width:0%}
+    to{width:100%}
+}
+
+#akFinalIntro .ak-loading-text{
+    margin-top:8px;
+    display:flex;
+    justify-content:space-between;
+    color:rgba(255,255,255,.42);
+    font-size:8px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+@media(max-width:600px){
+    #akFinalIntro .ak-title{
+        font-size:30px;
+        letter-spacing:-.5px;
+    }
+
+    #akFinalIntro .ak-subtitle{
+        font-size:8px;
+        letter-spacing:2px;
+    }
+
+    #akFinalIntro .ak-loader-ring{
+        width:56px;
+        height:56px;
+    }
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navbar{
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:78px;
+
+    z-index:1000;
+
+    background:rgba(4,9,5,.86);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(167,216,59,.12);
+}
+
+.nav-container{
+    max-width:1400px;
+
+    height:100%;
+
+    margin:auto;
+
+    padding:0 40px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:950;
+    letter-spacing:-1px;
+}
+
+.logo span{
+    color:var(--green);
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    font-size:14px;
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:var(--green);
+}
+
+.social-top{
+    display:flex;
+    gap:9px;
+}
+
+.social-top a{
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(167,216,59,.3);
+
+    border-radius:50%;
+
+    transition:.3s;
+}
+
+.social-top a:hover{
+    background:var(--green);
+    color:#071006;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:100vh;
+
+    padding-top:78px;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3,8,4,.96),
+            rgba(3,8,4,.72),
+            rgba(3,8,4,.35),
+            rgba(3,8,4,.72)
+        ),
+        linear-gradient(
+            0deg,
+            rgba(3,8,4,.9),
+            transparent
+        ),
+        url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2400&q=90");
+
+    background-size:cover;
+
+    background-position:center;
+
+    z-index:-1;
+}
+
+.hero-container{
+    width:100%;
+
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:70px 40px;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:55px;
+
+    align-items:center;
+}
+
+.hero-left{
+    max-width:700px;
+}
+
+.badge{
+    display:inline-flex;
+
+    padding:9px 17px;
+
+    border:1px solid rgba(167,216,59,.35);
+
+    border-radius:30px;
+
+    color:var(--green2);
+
+    background:rgba(5,12,5,.3);
+
+    font-size:11px;
+
+    font-weight:900;
+
+    letter-spacing:3px;
+
+    margin-bottom:28px;
+}
+
+
+/* NEW HERO TITLE */
+
+.hero-title{
+    font-size:clamp(58px,7vw,105px);
+
+    line-height:.84;
+
+    font-weight:950;
+
+    letter-spacing:-5px;
+
+    margin-bottom:28px;
+
+    text-shadow:
+        0 0 12px rgba(167,216,59,.25),
+        0 0 40px rgba(167,216,59,.14);
+}
+
+.hero-title .white{
+    display:block;
+
+    color:#ffffff;
+}
+
+.hero-title .green{
+    display:block;
+
+    color:var(--green);
+
+    text-shadow:
+        0 0 8px rgba(167,216,59,.65),
+        0 0 35px rgba(167,216,59,.35);
+}
+
+
+/* NEW TAGLINE */
+
+.hero-text{
+    max-width:560px;
+
+    font-size:19px;
+
+    line-height:1.55;
+
+    color:#e0e8dc;
+
+    margin-bottom:30px;
+
+    font-weight:500;
+}
+
+.hero-text strong{
+    display:block;
+
+    color:var(--green2);
+
+    font-size:13px;
+
+    letter-spacing:4px;
+
+    margin-bottom:8px;
+}
+
+.hero-buttons{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+}
+
+.btn{
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:15px 23px;
+
+    border-radius:35px;
+
+    font-size:13px;
+
+    font-weight:900;
+
+    border:1px solid rgba(167,216,59,.35);
+
+    transition:.3s;
+}
+
+.btn-primary{
+    background:var(--green);
+
+    color:#071006;
+
+    border-color:var(--green);
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 10px 35px rgba(167,216,59,.28);
+}
+
+.btn-secondary{
+    background:rgba(0,0,0,.35);
+}
+
+.btn-secondary:hover{
+    color:var(--green);
+
+    border-color:var(--green);
+}
+
+
+/* =========================================================
+   SLIDER
+========================================================= */
+
+.hero-slider{
+    width:100%;
+
+    position:relative;
+}
+
+.slider-window{
+    width:100%;
+
+    overflow:hidden;
+
+    border-radius:24px;
+}
+
+.slider-track{
+    display:flex;
+
+    transition:transform .7s ease;
+}
+
+.slide{
+    min-width:100%;
+}
+
+.slide-image{
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    object-fit:cover;
+
+    display:block;
+
+    border-radius:24px;
+
+    border:1px solid rgba(167,216,59,.3);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.55);
+}
+
+.slider-arrow{
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(167,216,59,.45);
+
+    background:rgba(0,0,0,.75);
+
+    color:#fff;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    z-index:5;
+
+    transition:.3s;
+}
+
+.slider-arrow:hover{
+    background:var(--green);
+
+    color:#000;
+}
+
+.slider-prev{
+    left:-20px;
+}
+
+.slider-next{
+    right:-20px;
+}
+
+.slider-dots{
+    display:flex;
+
+    justify-content:center;
+
+    gap:7px;
+
+    margin-top:16px;
+}
+
+.slider-dot{
+    width:32px;
+    height:4px;
+
+    border-radius:10px;
+
+    background:#26301f;
+
+    cursor:pointer;
+}
+
+.slider-dot.active{
+    width:52px;
+
+    background:var(--green);
+}
+
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+section{
+    padding:105px 0;
+}
+
+.container{
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:0 40px;
+}
+
+.section-heading{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+    gap:30px;
+
+    margin-bottom:38px;
+}
+
+.section-label{
+    color:var(--green);
+
+    font-size:11px;
+
+    font-weight:900;
+
+    letter-spacing:3px;
+
+    margin-bottom:9px;
+}
+
+.section-title{
+    font-size:46px;
+
+    letter-spacing:-1.5px;
+}
+
+.section-description{
+    max-width:430px;
+
+    color:var(--muted);
+
+    line-height:1.6;
+}
+
+
+/* =========================================================
+   NEW VLOG BANNER
+========================================================= */
+
+.featured{
+    background:#080d08;
+}.latest-vlog-image{
+    position:absolute;
+
+    inset:0 0 0 40%;
+
+    width:60%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    object-position:center;
+}
+.new-vlog{
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#071006;
+
+    background:var(--green);
+
+    padding:8px 13px;
+
+    border-radius:30px;
+
+    font-size:10px;
+
+    font-weight:950;
+
+    letter-spacing:2px;
+
+    margin-bottom:22px;
+}
+.latest-vlog-content h2 span{
+    color:var(--green);
+}.part.active{
+    color:#071006;
+
+    background:var(--green);
+
+    border-color:var(--green);
+
+    font-weight:900;
+}
+
+.arrow-small{
+    color:#596354;
+}
+
+
+/* =========================================================
+   YOUTUBE
+========================================================= */
+
+.video-grid{
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:28px;
+
+    margin-top:45px;
+}
+
+.video-card{
+    background:linear-gradient(
+        180deg,
+        #15200f,
+        #0c120a
+    );
+
+    border:1px solid rgba(167,216,59,.2);
+
+    border-radius:23px;
+
+    overflow:hidden;
+
+    transition:.35s;
+}
+
+.video-card:hover{
+    transform:translateY(-7px);
+
+    border-color:rgba(167,216,59,.6);
+}
+
+.video-thumb{
+    position:relative;
+
+    aspect-ratio:16/9;
+
+    overflow:hidden;
+}
+
+.video-thumb img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.5s;
+}
+
+.video-card:hover img{
+    transform:scale(1.05);
+}
+
+.play-icon{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:62px;
+    height:62px;
+
+    border-radius:50%;
+
+    background:rgba(0,0,0,.72);
+
+    border:2px solid rgba(255,255,255,.7);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:21px;
+
+    transition:.3s;
+}
+
+.video-card:hover .play-icon{
+    background:var(--green);
+
+    color:#071006;
+
+    border-color:var(--green);
+}
+
+.video-info{
+    padding:23px;
+}
+
+.video-info .label{
+    color:var(--green);
+
+    font-size:10px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    margin-bottom:9px;
+}
+
+.video-info h3{
+    font-size:21px;
+
+    margin-bottom:9px;
+}
+
+.video-info p{
+    color:var(--muted);
+
+    font-size:14px;
+
+    line-height:1.6;
+}
+
+.watch-link{
+    display:inline-block;
+
+    margin-top:17px;
+
+    color:var(--green);
+
+    font-size:11px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+}
+
+
+/* =========================================================
+   REELS
+========================================================= */
+
+.reels{
+    background:#080d08;
+}
+
+.reels-grid{
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:22px;
+}
+
+.reel-card{
+    background:#10180e;
+
+    border:1px solid rgba(167,216,59,.23);
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    transition:.35s;
+}
+
+.reel-card:hover{
+    transform:translateY(-6px);
+
+    border-color:rgba(167,216,59,.6);
+}
+
+.reel-preview{
+    aspect-ratio:9/16;
+
+    background:#111;
+
+    overflow:hidden;
+}
+
+.reel-preview iframe{
+    width:100%;
+    height:100%;
+
+    border:0;
+}
+
+.reel-info{
+    padding:21px;
+}
+
+.reel-info .label{
+    color:var(--green);
+
+    font-size:10px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+}
+
+.reel-info h3{
+    font-size:20px;
+
+    margin:9px 0;
+}
+
+.reel-info p{
+    color:var(--muted);
+
+    line-height:1.5;
+
+    font-size:13px;
+}
+
+
+/* INSTAGRAM EMBED THUMBNAILS + LIKE COUNTS */
+.instagram-embed-preview{
+    aspect-ratio:9/16;
+    background:#050805;
+    overflow:hidden;
+    position:relative;
+}
+
+.instagram-embed-preview iframe{
+    width:100%;
+    height:100%;
+    min-height:520px;
+    border:0;
+    display:block;
+    background:#050805;
+}
+
+@media(max-width:750px){
+    .instagram-embed-preview iframe{
+        min-height:620px;
+    }
+}
+
+/* =========================================================
+   JOURNEY
+========================================================= */
+
+.journey-grid{
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:15px;
+}
+
+.journey-card{
+    position:relative;
+
+    height:330px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(167,216,59,.25);
+}
+
+.journey-card img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.5s;
+}
+
+.journey-card:hover img{
+    transform:scale(1.08);
+}
+
+.journey-overlay{
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            transparent 30%,
+            rgba(0,0,0,.9)
+        );
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:end;
+
+    padding:25px;
+}
+
+.journey-overlay h3{
+    font-size:22px;
+
+    margin-bottom:6px;
+}
+
+.journey-overlay p{
+    color:#c4c9c0;
+
+    font-size:13px;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about{
+    background:
+        radial-gradient(
+            circle at 85% 30%,
+            rgba(167,216,59,.08),
+            transparent 35%
+        ),
+        #080e08;
+}
+
+.about-grid{
+    display:grid;
+
+    grid-template-columns:1.05fr .95fr;
+
+    gap:80px;
+
+    align-items:center;
+}
+
+.about-content{
+    max-width:700px;
+}
+
+.about-title{
+    font-size:clamp(42px,5vw,68px);
+
+    line-height:1.02;
+
+    letter-spacing:-2px;
+
+    margin-bottom:28px;
+}
+
+.about-title span{
+    color:var(--green);
+}
+
+.about-text{
+    color:#b8c0b4;
+
+    line-height:1.8;
+
+    font-size:16px;
+
+    margin-bottom:17px;
+}
+
+.about-text strong{
+    color:#fff;
+}
+
+.about-buttons{
+    display:flex;
+
+    gap:14px;
+
+    flex-wrap:wrap;
+
+    margin-top:30px;
+}
+
+.about-right{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+}
+
+.about-card{
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+    padding:28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(167,216,59,.08),
+            rgba(255,255,255,.015)
+        );
+
+    border:1px solid rgba(167,216,59,.2);
+
+    border-radius:20px;
+
+    transition:.35s;
+}
+
+.about-card:hover{
+    transform:translateX(8px);
+
+    border-color:rgba(167,216,59,.6);
+}
+
+.about-card-number{
+    min-width:55px;
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(167,216,59,.1);
+
+    border:1px solid rgba(167,216,59,.35);
+
+    color:var(--green);
+
+    font-size:13px;
+
+    font-weight:900;
+}
+
+.about-card h3{
+    font-size:20px;
+
+    margin-bottom:7px;
+}
+
+.about-card p{
+    color:#929c8f;
+
+    font-size:14px;
+
+    line-height:1.55;
+}
+
+
+/* =========================================================
+   COLLABORATE
+========================================================= */
+
+.collaborate{
+    padding-top:40px;
+
+    padding-bottom:110px;
+}
+
+.collaborate-box{
+    position:relative;
+
+    overflow:hidden;
+
+    text-align:center;
+
+    padding:80px 45px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(167,216,59,.14),
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #17220f,
+            #0b1109
+        );
+
+    border:1px solid rgba(167,216,59,.3);
+
+    border-radius:30px;
+}
+
+.collaborate-box h2{
+    position:relative;
+
+    font-size:clamp(38px,5vw,65px);
+
+    line-height:1.05;
+
+    margin-bottom:18px;
+}
+
+.collaborate-box h2 span{
+    color:var(--green);
+}
+
+.collaborate-box > p{
+    max-width:700px;
+
+    margin:0 auto 40px;
+
+    color:#aeb7aa;
+
+    line-height:1.7;
+}
+
+.collab-options{
+    max-width:1000px;
+
+    margin:0 auto 40px;
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:14px;
+
+    text-align:left;
+}
+
+.collab-option{
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:22px;
+
+    background:rgba(255,255,255,.025);
+
+    border:1px solid rgba(167,216,59,.16);
+
+    border-radius:18px;
+
+    transition:.3s;
+}
+
+.collab-option:hover{
+    transform:translateY(-4px);
+
+    background:rgba(167,216,59,.07);
+
+    border-color:rgba(167,216,59,.5);
+}
+
+.collab-icon{
+    min-width:52px;
+
+    width:52px;
+    height:52px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:15px;
+
+    background:rgba(167,216,59,.1);
+
+    border:1px solid rgba(167,216,59,.25);
+
+    color:var(--green);
+
+    font-size:22px;
+}
+
+.collab-option h3{
+    font-size:17px;
+
+    margin-bottom:5px;
+}
+
+.collab-option p{
+    color:#899387;
+
+    font-size:13px;
+
+    line-height:1.5;
+}
+
+.collaborate-buttons{
+    display:flex;
+
+    justify-content:center;
+
+    gap:14px;
+
+    flex-wrap:wrap;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    border-top:1px solid rgba(167,216,59,.1);
+
+    padding:35px 0;
+
+    background:#060a06;
+}
+
+.footer-container{
+    max-width:1400px;
+
+    padding:0 40px;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:30px;
+}
+
+.footer-logo{
+    font-size:18px;
+
+    font-weight:900;
+}
+
+.footer-logo span{
+    color:var(--green);
+}
+
+.footer-text{
+    color:#778073;
+
+    font-size:12px;
+}
+
+.footer-links{
+    display:flex;
+
+    gap:20px;
+}
+
+.footer-links a{
+    color:#aab1a6;
+
+    font-size:13px;
+}
+
+.footer-links a:hover{
+    color:var(--green);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1050px){
+
+    .hero-container{
+        grid-template-columns:1fr;
+    }
+
+    .hero-slider{
+        max-width:800px;
+
+        margin:auto;
+    }
+
+    .video-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .journey-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .about-grid{
+        grid-template-columns:1fr;
+
+        gap:50px;
+    }
+
+}
+
+
+@media(max-width:750px){
+
+    .navbar{
+        height:70px;
+    }
+
+    .nav-container{
+        padding:0 20px;
+    }
+
+    .logo{
+        font-size:21px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .social-top a{
+        width:37px;
+        height:37px;
+    }
+
+
+    /* INTRO MOBILE */
+
+    .earth,
+    .split-left,
+    .split-right{
+        width:190px;
+        height:190px;
+    }
+
+    .earth-wrap{
+        width:210px;
+        height:210px;
+    }
+
+    .earth-glow{
+        width:230px;
+        height:230px;
+    }
+
+    .intro-logo{
+        font-size:58px;
+
+        letter-spacing:-3px;
+    }
+
+    .intro-tagline{
+        font-size:10px;
+
+        letter-spacing:4px;
+    }
+
+    .category{
+        font-size:9px;
+
+        padding:8px 11px;
+    }
+
+
+    /* HERO */
+
+    .hero{
+        padding-top:70px;
+    }
+
+    .hero-container{
+        padding:55px 20px;
+    }
+
+    .hero-title{
+        font-size:70px;
+
+        letter-spacing:-4px;
+    }
+
+    .hero-text{
+        font-size:16px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .slider-prev{
+        left:8px;
+    }
+
+    .slider-next{
+        right:8px;
+    }
+
+
+    /* GENERAL */
+
+    section{
+        padding:75px 0;
+    }
+
+    .container{
+        padding:0 20px;
+    }
+
+    .section-heading{
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .section-title{
+        font-size:38px;
+    }
+
+
+    /* LATEST VLOG */
+
+    .latest-vlog-image{
+        inset:0;
+
+        width:100%;
+
+        height:100%;
+    }
+
+    /* CARDS */
+
+    .video-grid{
+        grid-template-columns:1fr;
+    }
+
+    .reels-grid{
+        grid-template-columns:1fr;
+    }
+
+    .journey-grid{
+        grid-template-columns:1fr;
+    }
+
+
+    /* ABOUT */
+
+    .about-title{
+        font-size:42px;
+    }
+
+    .about-buttons{
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+
+    /* COLLABORATE */
+
+    .collaborate-box{
+        padding:55px 20px;
+    }
+
+    .collab-options{
+        grid-template-columns:1fr;
+    }
+
+    .collaborate-buttons{
+        flex-direction:column;
+    }
+
+    .collaborate-buttons .btn{
+        width:100%;
+    }
+
+
+    /* FOOTER */
+
+    .footer-container{
+        padding:0 20px;
+
+        flex-direction:column;
+
+        text-align:center;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+    }
+
+}
+
+</style>
+
+<style>
+
+/* =========================================================
+   BANNERGHATTA HERO — CLEAN FULL IMAGE LAYOUT
+   ONLY THIS SECTION IS OVERRIDDEN
+========================================================= */@media(max-width:900px){
+    }
+
+@media(max-width:600px){
+    }
+
+</style>
+<style>
+
+/* =========================================================
+   MOBILE MENU — NAVBAR FIX
+========================================================= */
+
+@media (max-width: 768px){
+
+    header.navbar{
+        position:relative !important;
+        z-index:10050 !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:space-between !important;
+        padding-left:18px !important;
+        padding-right:14px !important;
+    }
+
+    header.navbar .nav-links{
+        display:none !important;
+    }
+
+    header.navbar .nav-actions{
+        margin-left:auto !important;
+        display:flex !important;
+        align-items:center !important;
+        gap:7px !important;
+    }
+
+    header.navbar .nav-actions > *{
+        flex-shrink:0 !important;
+    }
+
+    .mobile-menu-btn{
+        position:relative !important;
+        display:flex !important;
+        flex:0 0 38px !important;
+        width:38px !important;
+        height:38px !important;
+        margin:0 0 0 2px !important;
+        padding:0 !important;
+        border:1px solid rgba(167,216,59,.42) !important;
+        border-radius:50% !important;
+        background:rgba(3,7,4,.9) !important;
+        align-items:center !important;
+        justify-content:center !important;
+        flex-direction:column !important;
+        gap:3px !important;
+        cursor:pointer !important;
+        z-index:10060 !important;
+        visibility:visible !important;
+        opacity:1 !important;
+    }
+
+    .mobile-menu-btn span{
+        display:block !important;
+        width:4px !important;
+        height:4px !important;
+        min-width:4px !important;
+        min-height:4px !important;
+        border-radius:50% !important;
+        background:#a7d83b !important;
+    }
+
+    .mobile-menu-overlay{
+        display:block !important;
+        position:fixed !important;
+        inset:0 !important;
+        z-index:10070 !important;
+        background:rgba(0,0,0,.68) !important;
+        backdrop-filter:blur(4px) !important;
+        opacity:0 !important;
+        visibility:hidden !important;
+        pointer-events:none !important;
+        transition:opacity .25s ease, visibility .25s ease !important;
+    }
+
+    .mobile-menu-panel{
+        display:flex !important;
+        position:fixed !important;
+        top:0 !important;
+        right:0 !important;
+        width:min(320px,84vw) !important;
+        height:100dvh !important;
+        z-index:10080 !important;
+        flex-direction:column !important;
+        padding:24px 20px !important;
+        box-sizing:border-box !important;
+        background:linear-gradient(180deg,#081009,#020503) !important;
+        border-left:1px solid rgba(167,216,59,.25) !important;
+        transform:translateX(105%) !important;
+        transition:transform .3s cubic-bezier(.22,.61,.36,1) !important;
+    }
+
+    body.mobile-menu-open{
+        overflow:hidden !important;
+    }
+
+    body.mobile-menu-open .mobile-menu-overlay{
+        opacity:1 !important;
+        visibility:visible !important;
+        pointer-events:auto !important;
+    }
+
+    body.mobile-menu-open .mobile-menu-panel{
+        transform:translateX(0) !important;
+    }
+
+    .mobile-menu-head{
+        display:flex !important;
+        align-items:center !important;
+        justify-content:space-between !important;
+        padding-bottom:20px !important;
+        border-bottom:1px solid rgba(255,255,255,.08) !important;
+    }
+
+    .mobile-menu-logo{
+        color:#fff !important;
+        font-size:18px !important;
+        font-weight:950 !important;
+    }
+
+    .mobile-menu-close{
+        width:38px !important;
+        height:38px !important;
+        border:1px solid rgba(167,216,59,.28) !important;
+        border-radius:50% !important;
+        background:rgba(255,255,255,.025) !important;
+        color:#fff !important;
+        font-size:25px !important;
+        cursor:pointer !important;
+    }
+
+    .mobile-menu-links{
+        display:flex !important;
+        flex-direction:column !important;
+        gap:5px !important;
+        padding:22px 0 !important;
+    }
+
+    .mobile-menu-links a{
+        display:flex !important;
+        align-items:center !important;
+        min-height:50px !important;
+        padding:0 14px !important;
+        border-radius:12px !important;
+        color:#f2f5f1 !important;
+        text-decoration:none !important;
+        font-size:14px !important;
+        font-weight:850 !important;
+    }
+
+    .mobile-menu-links a::before{
+        content:"" !important;
+        width:5px !important;
+        height:5px !important;
+        margin-right:12px !important;
+        border-radius:50% !important;
+        background:#a7d83b !important;
+    }
+
+    .mobile-menu-social{
+        margin-top:auto !important;
+        display:grid !important;
+        grid-template-columns:1fr !important;
+        gap:9px !important;
+        padding-top:18px !important;
+        border-top:1px solid rgba(255,255,255,.08) !important;
+    }
+
+    .mobile-menu-social a{
+        display:block !important;
+        padding:12px !important;
+        border:1px solid rgba(167,216,59,.18) !important;
+        border-radius:11px !important;
+        color:#dfe6dd !important;
+        text-decoration:none !important;
+        text-align:center !important;
+        font-size:11px !important;
+        font-weight:800 !important;
+    }
+}
+
+@media (min-width:769px){
+    .mobile-menu-btn,
+    .mobile-menu-overlay,
+    .mobile-menu-panel{
+        display:none !important;
+    }
+}
+
+</style>
+<style>
+@media (max-width:768px){
+    header.navbar .nav-container{
+        width:100% !important;
+        max-width:none !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:space-between !important;
+        gap:6px !important;
+    }
+
+    header.navbar .logo{
+        flex:1 1 auto !important;
+        min-width:0 !important;
+    }
+
+    header.navbar .social-top{
+        display:flex !important;
+        flex:0 0 auto !important;
+        gap:6px !important;
+    }
+
+    header.navbar .social-top a{
+        width:36px !important;
+        height:36px !important;
+    }
+
+    header.navbar .mobile-menu-btn{
+        flex:0 0 36px !important;
+        width:36px !important;
+        height:36px !important;
+    }
+}
+</style></head>
+
+
+<body>
+
+<!-- =========================================================
+     AK XPERIA FINAL CINEMATIC INTRO
+========================================================= -->
+<!-- =========================================================
+     AK XPERIA CINEMATIC RAIN FOREST INTRO
+========================================================= -->
+<!-- =========================================================
+     AK XPERIA — CINEMATIC INTRO
+========================================================= -->
+<!-- =========================================================
+     AK XPERIA — FINAL CINEMATIC INTRO
+========================================================= -->
+<!-- =========================================================
+     AK XPERIA — SIMPLE PHOTO INTRO
+========================================================= -->
+<!-- =========================================================
+     AK XPERIA — VIDEO INTRO ONLY
+========================================================= -->
+<!-- =========================================================
+     AK XPERIA — SIMPLE SPACE LOADER
+========================================================= -->
+<!-- =========================================================
+     AK XPERIA — STAR LOADER
+========================================================= -->
+<!-- =========================================================
+     AK XPERIA — STAR LOADING INTRO
+========================================================= -->
+<div id="akFinalIntro">
+
+    <div class="ak-green-haze"></div>
+
+    <div class="ak-small-stars"></div>
+
+    <div class="ak-glow-stars"></div>
+
+    <div class="ak-shooting-star"></div>
+
+    <div class="ak-loader">
+
+        <div class="ak-loader-ring"></div>
+
+        <div class="ak-title">
+            <span class="ak-white">AK</span><span class="ak-green">XPERIA</span>
+        </div>
+
+        <div class="ak-subtitle">
+            TRAVEL • FOOD • LIFE.
+        </div>
+
+        <div class="ak-loading">
+
+            <div class="ak-loading-track">
+                <div class="ak-loading-progress"></div>
+            </div>
+
+            <div class="ak-loading-text">
+                <span>loading</span>
+                <span>...</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+
+        <a href="#home" class="logo">
+            AK <span>XPERIA</span>
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#vlogs">
+                Vlogs
+            </a>
+
+            <a href="#reels">
+                Reels
+            </a>
+
+            <a href="#journey">
+                Journey
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#collaborate">
+                Collaborate
+            </a>
+
+        </nav>
+
+
+        <div class="social-top">
+
+            <a
+                href="https://www.youtube.com/@akxperia"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="YouTube"
+            >
+                ▶
+            </a>
+
+
+            <a
+                href="https://www.instagram.com/akunfiltered.vlogs/"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="@akunfiltered.vlogs"
+            >
+                ◎
+            </a>
+
+        </div>
+<!-- MOBILE 3-DOT MENU -->
+<button
+    class="mobile-menu-btn"
+    id="mobileMenuBtn"
+    type="button"
+    aria-label="Open menu"
+    aria-expanded="false"
+>
+    <span></span><span></span><span></span>
+</button>
+
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+<aside class="mobile-menu-panel" id="mobileMenuPanel" aria-hidden="true">
+    <div class="mobile-menu-head">
+        <div class="mobile-menu-logo"><span>AK</span> XPERIA</div>
+        <button class="mobile-menu-close" id="mobileMenuClose" type="button" aria-label="Close menu">×</button>
+    </div>
+
+    <nav class="mobile-menu-links" aria-label="Mobile navigation">
+        <a href="#home">Home</a>
+        <a href="#vlogs">Vlogs</a>
+        <a href="#reels">Reels</a>
+        <a href="#journey">Journey</a>
+        <a href="#about">About</a>
+        <a href="#collaborate">Collaborate</a>
+    </nav>
+
+    <div class="mobile-menu-social">
+        <a href="https://www.youtube.com/@AKXPERIA" target="_blank" rel="noopener noreferrer">▶ YouTube</a>
+        <a href="https://www.instagram.com/akunfiltered.vlogs/" target="_blank" rel="noopener noreferrer">◎ Instagram</a>
+    </div>
+</aside>
+
+
+    </div>
+
+
+
+
+</header>
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-container">
+
+
+        <div class="hero-left">
+
+
+            <div class="badge">
+                AK XPERIA • CREATOR
+            </div>
+
+
+            <h1 class="hero-title">
+
+                <span class="white">
+                    AK
+                </span>
+
+                <span class="green">
+                    XPERIA
+                </span>
+
+            </h1>
+
+
+            <p class="hero-text">
+
+                <strong>
+                    TRAVEL. FOOD. LIFE.
+                </strong>
+
+                Chasing places, tasting experiences,
+                living the moment and turning every
+                journey into a story.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    href="https://www.youtube.com/@akxperia"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-primary"
+                >
+                    ▶ WATCH ON YOUTUBE
+                </a>
+
+
+                <a
+                    href="https://www.instagram.com/akunfiltered.vlogs/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-secondary"
+                >
+                    ◎ FOLLOW ON INSTAGRAM
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FRONT YOUTUBE SLIDER -->
+
+        <div class="hero-slider">
+
+            <button class="slider-arrow slider-prev"
+                    onclick="changeSlide(-1)"
+                    aria-label="Previous video">
+                ←
+            </button>
+
+            <div class="slider-window">
+                <div class="slider-track" id="sliderTrack">
+
+                    <div class="slide">
+                        <a href="https://www.youtube.com/watch?v=kz8OqDdjk8Y&t=3s"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="Bengaluru Wedding">
+                            <img class="slide-image"
+                                 src="https://img.youtube.com/vi/kz8OqDdjk8Y/hqdefault.jpg"
+                                 alt="Bengaluru Wedding">
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="https://www.youtube.com/watch?v=91z5PmVXdtg&t=2s"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="Bannerghatta Part-3">
+                            <img class="slide-image"
+                                 src="https://img.youtube.com/vi/91z5PmVXdtg/hqdefault.jpg"
+                                 alt="Bannerghatta Part-3">
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="https://www.youtube.com/watch?v=YXl18QKsNtU&t=7s"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="Bannerghatta Part-2">
+                            <img class="slide-image"
+                                 src="https://img.youtube.com/vi/YXl18QKsNtU/hqdefault.jpg"
+                                 alt="Bannerghatta Part-2">
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="https://www.youtube.com/watch?v=Ha1sBXVC1T8&t=7s"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="Bannerghatta Part-1">
+                            <img class="slide-image"
+                                 src="https://img.youtube.com/vi/Ha1sBXVC1T8/hqdefault.jpg"
+                                 alt="Bannerghatta Part-1">
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="https://www.youtube.com/watch?v=LJ2kVauNwjQ&t=5s"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="Payana Car Museum Part-2">
+                            <img class="slide-image"
+                                 src="https://img.youtube.com/vi/LJ2kVauNwjQ/hqdefault.jpg"
+                                 alt="Payana Car Museum Part-2">
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="https://www.youtube.com/watch?v=ZK2SOBtuTls&t=15s"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="Payana Car Museum Part-1">
+                            <img class="slide-image"
+                                 src="https://img.youtube.com/vi/ZK2SOBtuTls/hqdefault.jpg"
+                                 alt="Payana Car Museum Part-1">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <button class="slider-arrow slider-next"
+                    onclick="changeSlide(1)"
+                    aria-label="Next video">
+                →
+            </button>
+
+            <div class="slider-dots">
+
+                <span class="slider-dot active"
+                      onclick="goToSlide(0)"
+                      aria-label="Bengaluru Wedding"></span>
+                <span class="slider-dot"
+                      onclick="goToSlide(1)"
+                      aria-label="Bannerghatta Part-3"></span>
+                <span class="slider-dot"
+                      onclick="goToSlide(2)"
+                      aria-label="Bannerghatta Part-2"></span>
+                <span class="slider-dot"
+                      onclick="goToSlide(3)"
+                      aria-label="Bannerghatta Part-1"></span>
+                <span class="slider-dot"
+                      onclick="goToSlide(4)"
+                      aria-label="Payana Car Museum Part-2"></span>
+                <span class="slider-dot"
+                      onclick="goToSlide(5)"
+                      aria-label="Payana Car Museum Part-1"></span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     YOUTUBE VLOGS
+========================================================= -->
+
+<section id="vlogs">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div>
+                <div class="section-label">
+                    YOUTUBE
+                </div>
+
+                <h2 class="section-title">
+                    Latest Vlogs
+                </h2>
+            </div>
+
+            <p class="section-description">
+                Travel, food, adventures and experiences
+                captured through my camera.
+            </p>
+
+        </div>
+
+        <div class="video-grid">
+
+
+            <article class="video-card">
+
+                <a
+                    href="https://www.youtube.com/watch?v=kz8OqDdjk8Y&t=3s"
+                    target="_blank"
+                >
+
+                    <div class="video-thumb">
+
+                        <img
+                            src="https://img.youtube.com/vi/kz8OqDdjk8Y/hqdefault.jpg"
+                            alt="Bengaluru Wedding"
+                        >
+
+                        <div class="play-icon">
+                            ▶
+                        </div>
+
+                    </div>
+
+                    <div class="video-info">
+
+                        <div class="label">
+                            YOUTUBE VLOG
+                        </div>
+
+                        <h3>
+                            Bengaluru Wedding
+                        </h3>
+
+                        <p>
+                            A memorable Bengaluru wedding experience captured through my camera.
+                        </p>
+
+                        <span class="watch-link">
+                            WATCH VLOG →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+            <article class="video-card">
+
+                <a
+                    href="https://www.youtube.com/watch?v=91z5PmVXdtg&t=2s"
+                    target="_blank"
+                >
+
+                    <div class="video-thumb">
+
+                        <img
+                            src="https://img.youtube.com/vi/91z5PmVXdtg/hqdefault.jpg"
+                            alt="Bannerghatta Part-3"
+                        >
+
+                        <div class="play-icon">
+                            ▶
+                        </div>
+
+                    </div>
+
+                    <div class="video-info">
+
+                        <div class="label">
+                            BANNERGHATTA SERIES
+                        </div>
+
+                        <h3>
+                            Bannerghatta Part-3
+                        </h3>
+
+                        <p>
+                            The latest chapter of the Bannerghatta journey.
+                        </p>
+
+                        <span class="watch-link">
+                            WATCH VLOG →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+            <article class="video-card">
+
+                <a
+                    href="https://www.youtube.com/watch?v=YXl18QKsNtU&t=7s"
+                    target="_blank"
+                >
+
+                    <div class="video-thumb">
+
+                        <img
+                            src="https://img.youtube.com/vi/YXl18QKsNtU/hqdefault.jpg"
+                            alt="Bannerghatta Part-2"
+                        >
+
+                        <div class="play-icon">
+                            ▶
+                        </div>
+
+                    </div>
+
+                    <div class="video-info">
+
+                        <div class="label">
+                            BANNERGHATTA SERIES
+                        </div>
+
+                        <h3>
+                            Bannerghatta Part-2
+                        </h3>
+
+                        <p>
+                            More adventures, activities and unforgettable moments.
+                        </p>
+
+                        <span class="watch-link">
+                            WATCH VLOG →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+            <article class="video-card">
+
+                <a
+                    href="https://www.youtube.com/watch?v=Ha1sBXVC1T8&t=7s"
+                    target="_blank"
+                >
+
+                    <div class="video-thumb">
+
+                        <img
+                            src="https://img.youtube.com/vi/Ha1sBXVC1T8/hqdefault.jpg"
+                            alt="Bannerghatta Part-1"
+                        >
+
+                        <div class="play-icon">
+                            ▶
+                        </div>
+
+                    </div>
+
+                    <div class="video-info">
+
+                        <div class="label">
+                            BANNERGHATTA SERIES
+                        </div>
+
+                        <h3>
+                            Bannerghatta Part-1
+                        </h3>
+
+                        <p>
+                            The beginning of the Bannerghatta adventure.
+                        </p>
+
+                        <span class="watch-link">
+                            WATCH VLOG →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+            <article class="video-card">
+
+                <a
+                    href="https://www.youtube.com/watch?v=LJ2kVauNwjQ&t=5s"
+                    target="_blank"
+                >
+
+                    <div class="video-thumb">
+
+                        <img
+                            src="https://img.youtube.com/vi/LJ2kVauNwjQ/hqdefault.jpg"
+                            alt="Payana Car Museum Part-2"
+                        >
+
+                        <div class="play-icon">
+                            ▶
+                        </div>
+
+                    </div>
+
+                    <div class="video-info">
+
+                        <div class="label">
+                            PAYANA CAR MUSEUM
+                        </div>
+
+                        <h3>
+                            Payana Car Museum Part-2
+                        </h3>
+
+                        <p>
+                            More cars, memories and experiences from Payana.
+                        </p>
+
+                        <span class="watch-link">
+                            WATCH VLOG →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+            <article class="video-card">
+
+                <a
+                    href="https://www.youtube.com/watch?v=ZK2SOBtuTls&t=15s"
+                    target="_blank"
+                >
+
+                    <div class="video-thumb">
+
+                        <img
+                            src="https://img.youtube.com/vi/ZK2SOBtuTls/hqdefault.jpg"
+                            alt="Payana Car Museum Part-1"
+                        >
+
+                        <div class="play-icon">
+                            ▶
+                        </div>
+
+                    </div>
+
+                    <div class="video-info">
+
+                        <div class="label">
+                            PAYANA CAR MUSEUM
+                        </div>
+
+                        <h3>
+                            Payana Car Museum Part-1
+                        </h3>
+
+                        <p>
+                            Exploring the Payana car museum in Part 1.
+                        </p>
+
+                        <span class="watch-link">
+                            WATCH VLOG →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     INSTAGRAM REELS
+========================================================= -->
+
+<section
+    class="reels"
+    id="reels"
+>
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div>
+
+                <div class="section-label">
+                    INSTAGRAM
+                </div>
+
+                <h2 class="section-title">
+                    Unfiltered Reels
+                </h2>
+
+            </div>
+
+            <p class="section-description">
+                Short moments. Real experiences.
+                Straight from the journey.
+            </p>
+
+        </div>
+
+        <div class="reels-grid">
+
+
+            <article class="reel-card">
+
+                <a
+                    href="https://www.instagram.com/reel/Db5sLU_yzMn/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="reel-preview instagram-embed-preview">
+
+                        <iframe
+                            src="https://www.instagram.com/reel/Db5sLU_yzMn/embed/"
+                            title="Instagram Reel Db5sLU_yzMn"
+                            loading="lazy"
+                            allowtransparency="true"
+                            frameborder="0"
+                            scrolling="no"
+                        ></iframe>
+
+                    </div>
+
+                    <div class="reel-info">
+
+                        <div class="label">
+                            INSTAGRAM REEL 1
+                        </div>
+
+                        <h3>
+                            Bengaluru Wedding
+                        </h3>
+
+                        <p>
+                            Watch the reel on Instagram — thumbnail, views and likes are loaded from Instagram.
+                        </p>
+
+                        <span class="watch-link">
+                            WATCH REEL →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+            <article class="reel-card">
+
+                <a
+                    href="https://www.instagram.com/reel/DbqOlPIzgbx/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="reel-preview instagram-embed-preview">
+
+                        <iframe
+                            src="https://www.instagram.com/reel/DbqOlPIzgbx/embed/"
+                            title="Instagram Reel DbqOlPIzgbx"
+                            loading="lazy"
+                            allowtransparency="true"
+                            frameborder="0"
+                            scrolling="no"
+                        ></iframe>
+
+                    </div>
+
+                    <div class="reel-info">
+
+                        <div class="label">
+                            INSTAGRAM REEL 2
+                        </div>
+
+                        <h3>
+                            Bannerghatta
+                        </h3>
+
+                        <p>
+                            Watch the reel on Instagram — thumbnail, views and likes are loaded from Instagram.
+                        </p>
+
+                        <span class="watch-link">
+                            WATCH REEL →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+            <article class="reel-card">
+
+                <a
+                    href="https://www.instagram.com/reel/DblDukPz4PO/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="reel-preview instagram-embed-preview">
+
+                        <iframe
+                            src="https://www.instagram.com/reel/DblDukPz4PO/embed/"
+                            title="Instagram Reel DblDukPz4PO"
+                            loading="lazy"
+                            allowtransparency="true"
+                            frameborder="0"
+                            scrolling="no"
+                        ></iframe>
+
+                    </div>
+
+                    <div class="reel-info">
+
+                        <div class="label">
+                            INSTAGRAM REEL 3
+                        </div>
+
+                        <h3>
+                            Bannerghatta
+                        </h3>
+
+                        <p>
+                            Watch the reel on Instagram — thumbnail, views and likes are loaded from Instagram.
+                        </p>
+
+                        <span class="watch-link">
+                            WATCH REEL →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+            <article class="reel-card">
+
+                <a
+                    href="https://www.instagram.com/reel/DaZkTpchLwv/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="reel-preview instagram-embed-preview">
+
+                        <iframe
+                            src="https://www.instagram.com/reel/DaZkTpchLwv/embed/"
+                            title="Instagram Reel DaZkTpchLwv"
+                            loading="lazy"
+                            allowtransparency="true"
+                            frameborder="0"
+                            scrolling="no"
+                        ></iframe>
+
+                    </div>
+
+                    <div class="reel-info">
+
+                        <div class="label">
+                            INSTAGRAM REEL 4
+                        </div>
+
+                        <h3>
+                            Bannerghatta
+                        </h3>
+
+                        <p>
+                            Watch the reel on Instagram — thumbnail, views and likes are loaded from Instagram.
+                        </p>
+
+                        <span class="watch-link">
+                            WATCH REEL →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+            <article class="reel-card">
+
+                <a
+                    href="https://www.instagram.com/reel/DaQIcTxTUqu/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="reel-preview instagram-embed-preview">
+
+                        <iframe
+                            src="https://www.instagram.com/reel/DaQIcTxTUqu/embed/"
+                            title="Instagram Reel DaQIcTxTUqu"
+                            loading="lazy"
+                            allowtransparency="true"
+                            frameborder="0"
+                            scrolling="no"
+                        ></iframe>
+
+                    </div>
+
+                    <div class="reel-info">
+
+                        <div class="label">
+                            INSTAGRAM REEL 5
+                        </div>
+
+                        <h3>
+                            Bannerghatta
+                        </h3>
+
+                        <p>
+                            Watch the reel on Instagram — thumbnail, views and likes are loaded from Instagram.
+                        </p>
+
+                        <span class="watch-link">
+                            WATCH REEL →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+            <article class="reel-card">
+
+                <a
+                    href="https://www.instagram.com/reel/DaDQo2qzRfM/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="reel-preview instagram-embed-preview">
+
+                        <iframe
+                            src="https://www.instagram.com/reel/DaDQo2qzRfM/embed/"
+                            title="Instagram Reel DaDQo2qzRfM"
+                            loading="lazy"
+                            allowtransparency="true"
+                            frameborder="0"
+                            scrolling="no"
+                        ></iframe>
+
+                    </div>
+
+                    <div class="reel-info">
+
+                        <div class="label">
+                            INSTAGRAM REEL 6
+                        </div>
+
+                        <h3>
+                            Bannerghatta
+                        </h3>
+
+                        <p>
+                            Watch the reel on Instagram — thumbnail, views and likes are loaded from Instagram.
+                        </p>
+
+                        <span class="watch-link">
+                            WATCH REEL →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     JOURNEY
+========================================================= -->
+
+<section id="journey">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <div class="section-label">
+                    THE JOURNEY
+                </div>
+
+                <h2 class="section-title">
+                    Explore With Me
+                </h2>
+
+            </div>
+
+
+            <p class="section-description">
+                Different experiences, different places
+                and one unforgettable journey.
+            </p>
+
+        </div>
+
+
+        <div class="journey-grid">
+
+
+            <div class="journey-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=900&q=85"
+                    alt="Travel"
+                >
+
+                <div class="journey-overlay">
+
+                    <h3>
+                        TRAVEL
+                    </h3>
+
+                    <p>
+                        Exploring new places.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="journey-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85"
+                    alt="Food"
+                >
+
+                <div class="journey-overlay">
+
+                    <h3>
+                        FOOD
+                    </h3>
+
+                    <p>
+                        Discovering new flavours.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="journey-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=85"
+                    alt="Adventure"
+                >
+
+                <div class="journey-overlay">
+
+                    <h3>
+                        ADVENTURE
+                    </h3>
+
+                    <p>
+                        Activities and experiences.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="journey-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85"
+                    alt="Unfiltered"
+                >
+
+                <div class="journey-overlay">
+
+                    <h3>
+                        UNFILTERED
+                    </h3>
+
+                    <p>
+                        Real moments.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section
+    class="about"
+    id="about"
+>
+
+    <div class="container">
+
+
+        <div class="about-grid">
+
+
+            <div class="about-content">
+
+                <div class="section-label">
+                    ABOUT AK XPERIA
+                </div>
+
+
+                <h2 class="about-title">
+
+                    Capturing life.<br>
+
+                    <span>
+                        One experience at a time.
+                    </span>
+
+                </h2>
+
+
+                <p class="about-text">
+
+                    Welcome to <strong>AK XPERIA</strong> —
+                    my space for travel, food, adventures
+                    and the moments that make life worth remembering.
+
+                </p>
+
+
+                <p class="about-text">
+
+                    From exploring new places to experiencing
+                    new things, I capture my journey through
+                    videos and reels — keeping the moments
+                    real, personal and unfiltered.
+
+                </p>
+
+
+                <p class="about-text">
+
+                    This website is where you can explore
+                    my latest vlogs, discover my Instagram reels
+                    and follow along with the journey.
+
+                </p>
+
+
+                <div class="about-buttons">
+
+
+                    <a
+                        href="https://www.youtube.com/@akxperia"
+                        target="_blank"
+                        class="btn btn-primary"
+                    >
+                        ▶ YOUTUBE
+                    </a>
+
+
+                    <a
+                        href="https://www.instagram.com/akunfiltered.vlogs/"
+                        target="_blank"
+                        class="btn btn-secondary"
+                    >
+                        ◎ INSTAGRAM
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="about-right">
+
+
+                <div class="about-card">
+
+                    <div class="about-card-number">
+                        01
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            TRAVEL
+                        </h3>
+
+                        <p>
+                            Discovering new places and
+                            creating memories along the way.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="about-card">
+
+                    <div class="about-card-number">
+                        02
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            FOOD
+                        </h3>
+
+                        <p>
+                            Exploring new flavours and
+                            sharing food experiences.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="about-card">
+
+                    <div class="about-card-number">
+                        03
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            ADVENTURE
+                        </h3>
+
+                        <p>
+                            Trying new activities and
+                            turning experiences into stories.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="about-card">
+
+                    <div class="about-card-number">
+                        04
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            UNFILTERED
+                        </h3>
+
+                        <p>
+                            Real moments, real journeys
+                            and authentic content.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     COLLABORATE
+========================================================= -->
+
+<section
+    class="collaborate"
+    id="collaborate"
+>
+
+    <div class="container">
+
+
+        <div class="collaborate-box">
+
+
+            <div class="section-label">
+                WORK WITH AK XPERIA
+            </div>
+
+
+            <h2>
+
+                Let's Create Something
+                <span>Memorable.</span>
+
+            </h2>
+
+
+            <p>
+
+                I'm open to working with brands, restaurants,
+                travel companies, events and experiences
+                that fit the AK XPERIA journey.
+
+            </p>
+
+
+            <div class="collab-options">
+
+
+                <div class="collab-option">
+
+                    <div class="collab-icon">
+                        ✦
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Brand Collaborations
+                        </h3>
+
+                        <p>
+                            Product promotions, campaigns
+                            and creator partnerships.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="collab-option">
+
+                    <div class="collab-icon">
+                        ✈
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Travel & Tourism
+                        </h3>
+
+                        <p>
+                            Destinations, stays, activities
+                            and travel experiences.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="collab-option">
+
+                    <div class="collab-icon">
+                        🍴
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Food & Restaurants
+                        </h3>
+
+                        <p>
+                            Restaurant visits, food experiences
+                            and promotional content.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="collab-option">
+
+                    <div class="collab-icon">
+                        ★
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Events & Experiences
+                        </h3>
+
+                        <p>
+                            Events, launches and memorable
+                            creator experiences.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="collaborate-buttons">
+
+
+                <a
+                    href="mailto:asifkuratti05@gmail.com?subject=Collaboration%20Enquiry%20-%20AK%20XPERIA"
+                    class="btn btn-primary"
+                >
+                    ✉ SEND BUSINESS ENQUIRY
+                </a>
+
+
+                <a
+                    href="https://www.instagram.com/akunfiltered.vlogs/"
+                    target="_blank"
+                    class="btn btn-secondary"
+                >
+                    ◎ MESSAGE ON INSTAGRAM
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-container">
+
+
+        <div>
+
+            <div class="footer-logo">
+                AK <span>XPERIA</span>
+            </div>
+
+            <div class="footer-text">
+                Travel • Food • Adventures • Entertainment
+            </div>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a
+                href="https://www.youtube.com/@akxperia"
+                target="_blank"
+            >
+                YouTube
+            </a>
+
+
+            <a
+                href="https://www.instagram.com/akunfiltered.vlogs/"
+                target="_blank"
+            >
+                Instagram
+            </a>
+
+
+            <a href="#home">
+                Back to Top ↑
+            </a>
+
+        </div>
+
+
+        <div class="footer-text">
+            © 2026 AK XPERIA
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+<script>
+
+/* HERO SLIDER */
+const track=document.getElementById("sliderTrack");
+const dots=document.querySelectorAll(".slider-dot");
+const slider=document.querySelector(".hero-slider");
+const totalSlides=6;
+
+function updateSlider(){
+    if(!track)return;
+    track.style.transform="translateX(-"+(currentSlide*100)+"%)";
+    dots.forEach(function(dot,index){dot.classList.toggle("active",index===currentSlide)});
+}
+
+let currentSlide = 0;
+
+function changeSlide(direction){
+
+    const slides = document.querySelectorAll(".slide");
+
+    if(!slides.length){
+        return;
+    }
+
+    currentSlide += direction;
+
+    if(currentSlide >= slides.length){
+        currentSlide = 0;
+    }
+
+    if(currentSlide < 0){
+        currentSlide = slides.length - 1;
+    }
+
+    updateSlider();
+}
+
+function goToSlide(index){
+
+    const slides = document.querySelectorAll(".slide");
+
+    if(!slides.length){
+        return;
+    }
+
+    currentSlide = Math.max(0, Math.min(index, slides.length - 1));
+
+    updateSlider();
+}
+
+function updateSlider(){
+
+    const track = document.getElementById("sliderTrack");
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".slider-dot");
+
+    if(!track || !slides.length){
+        return;
+    }
+
+    track.style.transform =
+        "translateX(-" + (currentSlide * 100) + "%)";
+
+    dots.forEach(function(dot,index){
+        dot.classList.toggle("active", index === currentSlide);
+    });
+}
+
+updateSlider();
+
+setInterval(function(){
+    changeSlide(1);
+},5000);
+/* =========================================================
+   AK XPERIA — STAR LOADING INTRO
+   Intro duration: exactly 3 seconds
+========================================================= */
+
+(function(){
+
+    const intro =
+        document.getElementById("akFinalIntro");
+
+    if(!intro){
+        return;
+    }
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+
+    setTimeout(function(){
+
+        intro.style.opacity = "0";
+        intro.style.visibility = "hidden";
+
+        document.documentElement.style.overflow = "";
+        document.body.style.overflow = "";
+
+        setTimeout(function(){
+
+            if(intro && intro.parentNode){
+                intro.remove();
+            }
+
+        },700);
+
+    },3000);
+
+})();
+
+
+/* MOBILE 3-DOT MENU */
+(function(){
+    const btn = document.getElementById("mobileMenuBtn");
+    const close = document.getElementById("mobileMenuClose");
+    const overlay = document.getElementById("mobileMenuOverlay");
+    const panel = document.getElementById("mobileMenuPanel");
+
+    if(!btn || !close || !overlay || !panel) return;
+
+    function openMenu(){
+        document.body.classList.add("mobile-menu-open");
+        btn.setAttribute("aria-expanded","true");
+        panel.setAttribute("aria-hidden","false");
+    }
+
+    function closeMenu(){
+        document.body.classList.remove("mobile-menu-open");
+        btn.setAttribute("aria-expanded","false");
+        panel.setAttribute("aria-hidden","true");
+    }
+
+    btn.addEventListener("click", openMenu);
+    close.addEventListener("click", closeMenu);
+    overlay.addEventListener("click", closeMenu);
+
+    panel.querySelectorAll("a").forEach(function(a){
+        a.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", function(e){
+        if(e.key === "Escape") closeMenu();
+    });
+})();
+
+</script>
+
+</body>
+</html>
