@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AK XPERIA | Travel • Food • Life</title>
+<title>AK XPERIA | Travel • Food • Life 🚀</title>
 
 <style>
 
@@ -92,23 +92,17 @@ a{
 }
 
 /* SUBTLE GREEN SPACE HAZE */
-#akFinalIntro .ak-green-haze{
-    position:absolute;
-    inset:0;
-    z-index:1;
-    pointer-events:none;
-    background:
-        radial-gradient(ellipse at 50% 50%, rgba(65,130,58,.18), transparent 52%),
-        radial-gradient(ellipse at 35% 65%, rgba(35,95,42,.11), transparent 45%);
-    filter:blur(3px);
-    animation:akGreenHaze 3s ease-in-out infinite alternate;
-}
+#akFinalIntro .ak-green{
+    margin-left:12px;
+    color:#63ad4a;
 
-@keyframes akGreenHaze{
-    from{opacity:.4;transform:scale(.98)}
-    to{opacity:.9;transform:scale(1.04)}
+    text-shadow:
+        0 0 3px rgba(99,173,74,1),
+        0 0 9px rgba(99,173,74,.9),
+        0 0 20px rgba(82,155,62,.68),
+        0 0 34px rgba(52,115,45,.42),
+        0 3px 4px rgba(0,0,0,.9);
 }
-
 /* Extra tiny stars */
 #akFinalIntro .ak-small-stars{
     position:absolute;
@@ -165,114 +159,6 @@ a{
     to{transform:scale(1.25);opacity:1}
 }
 
-
-/* =========================================================
-   MOVING SPACE STICKERS
-========================================================= */
-
-#akFinalIntro .ak-space-stickers{
-    position:absolute;
-    inset:0;
-    z-index:9;
-    pointer-events:none;
-    overflow:hidden;
-}
-
-#akFinalIntro .ak-space-sticker{
-    position:absolute;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:Arial,sans-serif;
-    user-select:none;
-    filter:drop-shadow(0 0 8px rgba(120,190,110,.45));
-}
-
-#akFinalIntro .ak-astronaut{
-    left:7%;
-    top:20%;
-    font-size:34px;
-    animation:akAstronautFloat 5s ease-in-out infinite;
-}
-
-#akFinalIntro .ak-planet{
-    right:8%;
-    top:17%;
-    font-size:38px;
-    animation:akPlanetFloat 6s ease-in-out infinite;
-}
-
-#akFinalIntro .ak-satellite{
-    left:12%;
-    bottom:18%;
-    font-size:30px;
-    animation:akSatelliteMove 7s ease-in-out infinite;
-}
-
-#akFinalIntro .ak-rocket{
-    right:13%;
-    bottom:20%;
-    font-size:31px;
-    animation:akRocketMove 5.5s ease-in-out infinite;
-}
-
-#akFinalIntro .ak-ufo{
-    right:27%;
-    top:9%;
-    font-size:27px;
-    animation:akUFOMove 8s ease-in-out infinite;
-}
-
-#akFinalIntro .ak-moon{
-    left:25%;
-    top:13%;
-    font-size:24px;
-    opacity:.85;
-    animation:akMoonFloat 4.5s ease-in-out infinite;
-}
-
-@keyframes akAstronautFloat{
-    0%,100%{transform:translate(0,0) rotate(-5deg)}
-    50%{transform:translate(18px,-22px) rotate(6deg)}
-}
-
-@keyframes akPlanetFloat{
-    0%,100%{transform:translate(0,0) rotate(0deg)}
-    50%{transform:translate(-22px,18px) rotate(12deg)}
-}
-
-@keyframes akSatelliteMove{
-    0%{transform:translate(-20px,10px) rotate(-8deg)}
-    50%{transform:translate(45px,-28px) rotate(10deg)}
-    100%{transform:translate(-20px,10px) rotate(-8deg)}
-}
-
-@keyframes akRocketMove{
-    0%,100%{transform:translate(0,0) rotate(-18deg)}
-    50%{transform:translate(-30px,-25px) rotate(-10deg)}
-}
-
-@keyframes akUFOMove{
-    0%{transform:translateX(0) translateY(0)}
-    25%{transform:translateX(-35px) translateY(12px)}
-    50%{transform:translateX(-70px) translateY(0)}
-    75%{transform:translateX(-35px) translateY(-12px)}
-    100%{transform:translateX(0) translateY(0)}
-}
-
-@keyframes akMoonFloat{
-    0%,100%{transform:translateY(0) rotate(-8deg)}
-    50%{transform:translateY(-15px) rotate(8deg)}
-}
-
-@media(max-width:600px){
-    #akFinalIntro .ak-astronaut{font-size:24px;left:5%;top:18%}
-    #akFinalIntro .ak-planet{font-size:28px;right:5%;top:15%}
-    #akFinalIntro .ak-satellite{font-size:22px;left:7%;bottom:18%}
-    #akFinalIntro .ak-rocket{font-size:24px;right:8%;bottom:19%}
-    #akFinalIntro .ak-ufo{font-size:21px;right:22%;top:8%}
-    #akFinalIntro .ak-moon{font-size:19px;left:20%;top:12%}
-}
 
 /* SHOOTING STAR — TOP LEFT TO OPPOSITE CORNER, FULL 3 SECONDS */
 #akFinalIntro .ak-shooting-star{
@@ -468,14 +354,28 @@ a{
 /* SMALL HOMEPAGE TITLE */
 
 #akFinalIntro .ak-subtitle{
-    margin-top:10px;
-    color:rgba(180,220,160,.82);
+    margin-top:16px;
+
+    color:#ffffff;
+
     font-family:Arial,Helvetica,sans-serif;
-    font-size:8px;
-    font-weight:600;
-    letter-spacing:2.5px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:4px;
+
+    line-height:1.4;
+
     text-transform:uppercase;
-    text-shadow:0 0 6px rgba(100,170,70,.45);
+
+    text-shadow:
+        0 2px 5px rgba(0,0,0,.95),
+        0 0 10px rgba(0,0,0,.8);
+
+    position:relative;
+    z-index:25;
 }
 
 /* LOADING BAR + PERCENT */
@@ -2246,9 +2146,9 @@ footer{
         <div class="ak-loader-ring"></div>
 
         <div class="ak-title">
-            <span class="ak-white">AK</span><span class="ak-green">XPERIA</span>
-        </div>
-
+    <span class="ak-white">AK</span>
+    <span class="ak-green">XPERIA</span>
+</div>
         <div class="ak-subtitle">
             TRAVEL • FOOD • LIFE.
         </div>
