@@ -1067,8 +1067,9 @@ box-shadow:
    GENERAL
 ========================================================= */
 
-section{
-    padding:105px 0;
+#about{
+    padding-top:70px;
+    padding-bottom:70px;
 }
 
 .container{
@@ -1633,9 +1634,9 @@ flex-direction:column;
 
 @media(max-width:750px){
 
-    .instagram-embed-preview{
-        aspect-ratio:4/5;
-    }
+.instagram-embed-preview{
+    aspect-ratio:1.12/1;
+}
 
     .instagram-embed-preview iframe{
         width:100%;
@@ -1644,10 +1645,41 @@ flex-direction:column;
         transform:none;
     }
 
+    .reels-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+        max-width:440px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .reel-card{
+        border-radius:16px;
+    }
+
+    .reel-info{
+        padding:12px;
+    }
+
+    .reel-info .label{
+        font-size:7px;
+        letter-spacing:1px;
+    }
+
+    .reel-info h3{
+        font-size:15px;
+        line-height:1.2;
+    }
+
+    .reel-info p{
+        font-size:10px;
+        line-height:1.4;
+    }
+
 }
 
 /* =========================================================
-   JOURNEY
+   JOURNEY — PREMIUM CARDS
 ========================================================= */
 
 .journey-grid{
@@ -1655,19 +1687,41 @@ flex-direction:column;
 
     grid-template-columns:repeat(4,1fr);
 
-    gap:15px;
+    gap:22px;
+
+    margin-top:48px;
 }
 
 .journey-card{
     position:relative;
 
-    height:330px;
+    height:380px;
 
-    border-radius:20px;
+    border-radius:24px;
 
     overflow:hidden;
 
     border:1px solid rgba(167,216,59,.25);
+
+    background:#0b1209;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.28);
+
+    transition:
+        transform .4s ease,
+        border-color .4s ease,
+        box-shadow .4s ease;
+}
+
+.journey-card:hover{
+    transform:translateY(-8px);
+
+    border-color:rgba(167,216,59,.65);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.42),
+        0 0 25px rgba(167,216,59,.08);
 }
 
 .journey-card img{
@@ -1676,11 +1730,17 @@ flex-direction:column;
 
     object-fit:cover;
 
-    transition:.5s;
+    display:block;
+
+    transition:
+        transform .7s ease,
+        filter .5s ease;
 }
 
 .journey-card:hover img{
     transform:scale(1.08);
+
+    filter:brightness(.82);
 }
 
 .journey-overlay{
@@ -1688,33 +1748,50 @@ flex-direction:column;
 
     inset:0;
 
-    background:
-        linear-gradient(
-            transparent 30%,
-            rgba(0,0,0,.9)
-        );
-
     display:flex;
 
     flex-direction:column;
 
-    justify-content:end;
+    justify-content:flex-end;
 
-    padding:25px;
+    padding:28px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 35%,
+            rgba(0,0,0,.18) 50%,
+            rgba(0,0,0,.92) 100%
+        );
 }
 
 .journey-overlay h3{
-    font-size:22px;
+    color:#fff;
 
-    margin-bottom:6px;
+    font-size:26px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    margin-bottom:8px;
+
+    transition:.3s ease;
+}
+
+.journey-card:hover .journey-overlay h3{
+    color:var(--green);
 }
 
 .journey-overlay p{
-    color:#c4c9c0;
+    color:#d0d5cc;
 
-    font-size:13px;
+    font-size:14px;
+
+    line-height:1.5;
+
+    margin:0;
 }
-
 
 /* =========================================================
    ABOUT
@@ -1735,7 +1812,7 @@ flex-direction:column;
 
     grid-template-columns:1.05fr .95fr;
 
-    gap:80px;
+    gap:55px;
 
     align-items:center;
 }
@@ -1745,13 +1822,15 @@ flex-direction:column;
 }
 
 .about-title{
-    font-size:clamp(42px,5vw,68px);
+    font-size:clamp(38px,4vw,58px);
 
     line-height:1.02;
 
-    letter-spacing:-2px;
+    letter-spacing:-2.5px;
 
     margin-bottom:28px;
+
+    font-weight:900;
 }
 
 .about-title span{
@@ -1810,13 +1889,28 @@ flex-direction:column;
 
     border-radius:20px;
 
-    transition:.35s;
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        background .35s ease,
+        box-shadow .35s ease;
 }
 
 .about-card:hover{
     transform:translateX(8px);
 
     border-color:rgba(167,216,59,.6);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(167,216,59,.12),
+            rgba(255,255,255,.02)
+        );
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.25),
+        0 0 20px rgba(167,216,59,.06);
 }
 
 .about-card-number{
@@ -1842,6 +1936,16 @@ flex-direction:column;
     font-size:13px;
 
     font-weight:900;
+        transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease;
+}
+
+.about-card:hover .about-card-number{
+    background:var(--green);
+    color:#071006;
+    transform:scale(1.08);
 }
 
 .about-card h3{
@@ -2068,7 +2172,7 @@ footer{
 
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE - TABLET & MOBILE
 ========================================================= */
 
 @media(max-width:768px){
@@ -2079,101 +2183,109 @@ footer{
 
     .hero-slider{
         max-width:800px;
-
         margin:auto;
     }
 
-.video-grid{
-    grid-template-columns:repeat(2,1fr);
-}
 
-    .reels-grid{
+    /* VLOGS - 2 COLUMNS */
+
+    .video-grid{
         grid-template-columns:repeat(2,1fr);
         gap:12px;
     }
 
-/* MOBILE VIDEO CARD SIZE */
-.video-card{
-    border-radius:18px;
-}
 
-.video-info{
-    padding:16px 14px 18px;
-}
+    /* VLOG CARD */
 
-.video-info .label{
-    font-size:8px;
-    letter-spacing:1.5px;
-    margin-bottom:7px;
-}
+    .video-card{
+        border-radius:18px;
+    }
 
-.video-info h3{
-    font-size:17px;
-    line-height:1.2;
-    margin-bottom:8px;
-}
+    .video-info{
+        padding:16px 14px 18px;
+    }
 
-.video-info p{
-    font-size:12px;
-    line-height:1.5;
-}
+    .video-info .label{
+        font-size:8px;
+        letter-spacing:1.5px;
+        margin-bottom:7px;
+    }
 
-.watch-link{
-    margin-top:13px;
-    font-size:9px;
-    letter-spacing:.8px;
-}
+    .video-info h3{
+        font-size:17px;
+        line-height:1.2;
+        margin-bottom:8px;
+    }
 
-.play-icon{
-    width:44px;
-    height:44px;
-    font-size:16px;
-}
+    .video-info p{
+        font-size:12px;
+        line-height:1.5;
+    }
 
-.journey-grid{
+    .watch-link{
+        margin-top:13px;
+        font-size:9px;
+        letter-spacing:.8px;
+    }
+
+    .play-icon{
+        width:44px;
+        height:44px;
+        font-size:16px;
+    }
+
+
+    /* REELS - 2 COLUMNS */
+
+    .reels-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+        max-width:440px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .reel-card{
+        border-radius:16px;
+    }
+
+    .reel-info{
+        padding:12px;
+    }
+
+    .reel-info .label{
+        font-size:7px;
+        letter-spacing:1px;
+    }
+
+    .reel-info h3{
+        font-size:15px;
+        line-height:1.2;
+        margin:8px 0;
+    }
+
+    .reel-info p{
+        font-size:10px;
+        line-height:1.4;
+    }
+
+
+    /* JOURNEY - 2 COLUMNS */
+
+    .journey-grid{
         grid-template-columns:repeat(2,1fr);
     }
 
+
+    /* ABOUT */
+
     .about-grid{
         grid-template-columns:1fr;
-
         gap:50px;
     }
-.about-grid{
-    grid-template-columns:1fr;
 
-    gap:50px;
 }
-
-
-/* MOBILE REELS */
-
-.reel-card{
-    border-radius:18px;
-}
-
-.reel-info{
-    padding:14px;
-}
-
-.reel-info .label{
-    font-size:8px;
-    letter-spacing:1.5px;
-}
-
-.reel-info h3{
-    font-size:16px;
-    line-height:1.2;
-    margin:8px 0;
-}
-
-.reel-info p{
-    font-size:11px;
-    line-height:1.45;
-}
-
-}  /* CLOSES @media(max-width:768px) */
-
+ /* CLOSES @media(max-width:768px) */
 
 @media(max-width:750px){
 
@@ -2325,6 +2437,91 @@ footer{
 
 }
 
+/* =========================================================
+   REELS — LOAD MORE BUTTON
+========================================================= */
+
+.reels-load-more-wrap{
+    display:flex;
+    justify-content:center;
+    margin-top:45px;
+}
+
+.reels-load-more{
+    padding:15px 28px;
+    border:1px solid rgba(167,216,59,.45);
+    border-radius:35px;
+    background:rgba(167,216,59,.08);
+    color:var(--green);
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:1.5px;
+    cursor:pointer;
+    transition:.3s ease;
+}
+
+.reels-load-more:hover{
+    background:var(--green);
+    color:#071006;
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(167,216,59,.22);
+}
+
+@media(max-width:750px){
+
+    .reels-load-more-wrap{
+        margin-top:30px;
+    }
+
+    .reels-load-more{
+        padding:13px 22px;
+        font-size:10px;
+    }
+
+}
+/* =========================================================
+   VLOGS — LOAD MORE BUTTON
+========================================================= */
+
+.vlogs-load-more-wrap{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:45px;
+}
+
+.vlogs-load-more{
+    padding:15px 28px;
+    border:1px solid rgba(167,216,59,.45);
+    border-radius:35px;
+    background:rgba(167,216,59,.08);
+    color:var(--green);
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:1.5px;
+    cursor:pointer;
+    transition:.3s ease;
+}
+
+.vlogs-load-more:hover{
+    background:var(--green);
+    color:#071006;
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(167,216,59,.22);
+}
+
+@media(max-width:750px){
+
+    .vlogs-load-more-wrap{
+        margin-top:30px;
+    }
+
+    .vlogs-load-more{
+        padding:13px 22px;
+        font-size:10px;
+    }
+
+}
 </style>
 
 <style>
@@ -3284,11 +3481,15 @@ body.mobile-menu-open .mobile-menu-panel{
 
         </div>
 
+               <div class="vlogs-load-more-wrap">
+            <button id="loadMoreVlogs" class="vlogs-load-more">
+                LOAD MORE VLOGS →
+            </button>
+        </div>
+
     </div>
 
 </section>
-
-
 
 <!-- =========================================================
      INSTAGRAM REELS
@@ -3323,6 +3524,49 @@ body.mobile-menu-open .mobile-menu-panel{
         </div>
 
         <div class="reels-grid">
+
+            <article class="reel-card">
+
+    <a
+        href="https://www.instagram.com/reel/Db-1xdoSCjw/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="reel-preview instagram-embed-preview">
+
+            <iframe
+                src="https://www.instagram.com/reel/Db-1xdoSCjw/embed"
+                frameborder="0"
+                scrolling="no"
+                allowtransparency="true"
+            ></iframe>
+
+        </div>
+
+        <div class="reel-info">
+
+            <div class="label">
+                INSTAGRAM REEL 4
+            </div>
+
+            <h3>
+                Bengaluru Wedding Part-1
+            </h3>
+
+            <p>
+                Wedding shopping and preparation begins in Bengaluru.
+            </p>
+
+            <span class="watch-link">
+                WATCH REEL →
+            </span>
+
+        </div>
+
+    </a>
+
+</article>
 
 
             <article class="reel-card">
@@ -3596,12 +3840,15 @@ body.mobile-menu-open .mobile-menu-panel{
             </article>
 
         </div>
+                <div class="reels-load-more-wrap">
+            <button id="loadMoreReels" class="reels-load-more">
+                LOAD MORE REELS →
+            </button>
+        </div>
 
     </div>
 
 </section>
-
-
 
 <!-- =========================================================
      JOURNEY
@@ -4282,6 +4529,102 @@ setInterval(function(){
     document.addEventListener("keydown", function(e){
         if(e.key === "Escape") closeMenu();
     });
+})();
+
+/* =========================================================
+   REELS — LOAD MORE
+========================================================= */
+
+(function(){
+
+    const reels = document.querySelectorAll(".reels-grid .reel-card");
+    const loadMoreBtn = document.getElementById("loadMoreReels");
+
+    if(!reels.length || !loadMoreBtn){
+        return;
+    }
+
+    const reelsPerLoad = 6;
+    let visibleReels = 6;
+
+    function updateReels(){
+
+        reels.forEach(function(reel, index){
+
+            if(index < visibleReels){
+                reel.style.display = "";
+            }else{
+                reel.style.display = "none";
+            }
+
+        });
+
+        if(visibleReels >= reels.length){
+            loadMoreBtn.style.display = "none";
+        }else{
+            loadMoreBtn.style.display = "inline-flex";
+        }
+
+    }
+
+    loadMoreBtn.addEventListener("click", function(){
+
+        visibleReels += reelsPerLoad;
+
+        updateReels();
+
+    });
+
+    updateReels();
+
+})();
+
+/* =========================================================
+   VLOGS — LOAD MORE
+========================================================= */
+
+(function(){
+
+    const vlogs = document.querySelectorAll(".video-grid .video-card");
+    const loadMoreBtn = document.getElementById("loadMoreVlogs");
+
+    if(!vlogs.length || !loadMoreBtn){
+        return;
+    }
+
+    const vlogsPerLoad = 6;
+    let visibleVlogs = 6;
+
+    function updateVlogs(){
+
+        vlogs.forEach(function(vlog,index){
+
+            if(index < visibleVlogs){
+                vlog.style.display = "";
+            }else{
+                vlog.style.display = "none";
+            }
+
+        });
+
+        if(visibleVlogs >= vlogs.length){
+            loadMoreBtn.style.display = "none";
+        }else{
+            loadMoreBtn.style.display = "inline-flex";
+        }
+
+    }
+
+    loadMoreBtn.addEventListener("click",function(){
+
+        visibleVlogs += vlogsPerLoad;
+
+        updateVlogs();
+
+    });
+
+    updateVlogs();
+
 })();
 
 </script>
